@@ -1,6 +1,6 @@
 import { useState } from "react";
 export const useLike = ()=>{
-    const [like, setLike]= useState(false);
+    const [like, setLike]= useState<boolean>(false);
 
 
     const handleLike = ()=>{
