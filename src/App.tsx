@@ -9,6 +9,11 @@ import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductPage from "./pages/ProductPage";
 import ProductListPage from "./pages/ProductListPage";
+import Home from "./components/Navbar";
+import Navbar from "./components/Navbar";
+import ProductDetail from "./pages/ProductDetail";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
 
 // komponen
 // function App() {
@@ -111,26 +116,49 @@ import ProductListPage from "./pages/ProductListPage";
 // export default App;
 
 // Belajar Router
+// function App() {
+//   return (
+//     <>
+//       {/* satu Routes akan membungkus banyak Route */}
+//       <Routes>
+//         <Route path="/" element={<HomePage />} />
+//         {/* Route menerima beberapa props salah satunya path dan menerima props bernama element dan didalamnya memberikan komponen,
+//       komponen yang mau menjadi patch ketika url atau patch mengarah ke /terms */}
+//         <Route path="/terms" element={<TermsPage />} />
+
+//         <Route path="/product-list" element={<ProductListPage />} />
+
+//         {/* Dynamic Route */}
+//         {/* contoh Slug => Kaos Putih = kaos-putih */}
+//         {/* Slug hanya variabel saja atau placeholder saja */}
+//         <Route path="/product/:slug" element={<ProductPage />} />
+
+//         {/* path bintang * sama seperti else. jika path homepage dan terms tidak ke hit, makan akan masuk ke notfound page */}
+//         <Route path="*" element={<NotFoundPage />} />
+//       </Routes>
+//     </>
+//   );
+// }
+
+// export default App;
 function App() {
   return (
     <>
+    <Navbar />
       {/* satu Routes akan membungkus banyak Route */}
       <Routes>
+        {/* Page */}
         <Route path="/" element={<HomePage />} />
-        {/* Route menerima beberapa props salah satunya path dan menerima props bernama element dan didalamnya memberikan komponen, 
-      komponen yang mau menjadi patch ketika url atau patch mengarah ke /terms */}
-        <Route path="/terms" element={<TermsPage />} />
+        <Route path="/product" element={<ProductPage />} />
+        {/* Dynamic Route */}
+        <Route path="/product/:slug" element={<ProductDetail />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+
+        {/* Not Found */}
+        <Route path="*" element={<NotFoundPage />} />
 
         
-        <Route path="/product-list" element={<ProductListPage />} />
-
-        {/* Dynamic Route */}
-        {/* contoh Slug => Kaos Putih = kaos-putih */}
-        {/* Slug hanya variabel saja atau placeholder saja */}
-        <Route path="/product/:slug" element={<ProductPage />} />
-
-        {/* path bintang * sama seperti else. jika path homepage dan terms tidak ke hit, makan akan masuk ke notfound page */}
-        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );

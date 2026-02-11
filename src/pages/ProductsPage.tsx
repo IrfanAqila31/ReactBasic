@@ -1,0 +1,23 @@
+import { Link } from "react-router";
+
+const ProductsPage = () => {
+  const product = [
+    { id: 1, name: "Kaos Putih", price: 50000 },
+    { id: 2, name: "Kemeja Biru", price: 150000 },
+    { id: 3, name: "Celana Panjang", price: 200000 },
+  ];
+  return (
+    <div>
+      <h1>ini halaman detail product</h1>
+
+      <ul>
+        {product.map((product) => (
+          <li key={product.id}>
+            <Link to={`/product/${product.id}`}>{product.name}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+export default ProductsPage;
