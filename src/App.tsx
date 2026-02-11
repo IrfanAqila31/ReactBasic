@@ -5,9 +5,10 @@ import Counter from "./components/Counter";
 // import ToggleLike from "./components/toggleLike";
 import { Routes, Route } from "react-router";
 import TermsPage from "./pages/TermsPage";
-import HomePage from "./pages/homePage";
+import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductPage from "./pages/ProductPage";
+import ProductListPage from "./pages/ProductListPage";
 
 // komponen
 // function App() {
@@ -119,6 +120,9 @@ function App() {
         {/* Route menerima beberapa props salah satunya path dan menerima props bernama element dan didalamnya memberikan komponen, 
       komponen yang mau menjadi patch ketika url atau patch mengarah ke /terms */}
         <Route path="/terms" element={<TermsPage />} />
+
+        
+        <Route path="/product-list" element={<ProductListPage />} />
 
         {/* Dynamic Route */}
         {/* contoh Slug => Kaos Putih = kaos-putih */}
