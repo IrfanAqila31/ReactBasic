@@ -14,6 +14,7 @@ import Navbar from "./components/Navbar";
 import ProductDetail from "./pages/ProductDetail";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import ProductsPage from "./pages/ProductsPage";
 
 // komponen
 // function App() {
@@ -151,7 +152,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/product" element={<ProductPage />} />
         {/* Dynamic Route */}
-        <Route path="/product/:slug" element={<ProductDetail />} />
+        <Route path="/product/:id" element={<ProductsPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
 

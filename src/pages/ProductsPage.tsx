@@ -13,7 +13,8 @@ const ProductsPage = () => {
       <ul>
         {product.map((product) => (
           <li key={product.id}>
-            <Link to={`/product/${product.id}`}>{product.name}</Link>
+            {/* ini path nya {product.name} akan memunculkan sesuai namanya */}
+            <Link to={`/product/${product.name}`}>{product.name}</Link>
           </li>
         ))}
       </ul>
