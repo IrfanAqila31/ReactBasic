@@ -8,13 +8,13 @@ const ProductsPage = () => {
   ];
   return (
     <div>
-      <h1>ini halaman detail product</h1>
+      <h1>ini halaman daftar product</h1>
 
       <ul>
         {product.map((product) => (
           <li key={product.id}>
             {/* ini path nya {product.name} akan memunculkan sesuai namanya */}
-            <Link to={`/product/${product.name}`}>{product.name}</Link>
+            <Link to={`/product/${product.id}`}>{product.name}</Link>
           </li>
         ))}
       </ul>
