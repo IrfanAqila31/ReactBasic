@@ -62,6 +62,7 @@ const FormPage = () => {
           type="email"
           value={emailInput}
         />
+        <span style={{color:'red'}}>{fullNameErrorMessage}</span>
         <label htmlFor="password">Password</label>
         <input
           onChange={(event) => setPasswordInput(event.target.value)}
@@ -69,6 +70,7 @@ const FormPage = () => {
           type="password"
           value={passwordInput}
         />
+        <span style={{color:'red'}}>{passwordErrorMessage}</span>
         <button onClick={handleSubmit}>Submit</button>
       </div>
     </div>
