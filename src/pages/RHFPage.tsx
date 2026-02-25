@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod"; // zod digunakan untuk membuat validasi
 import { zodResolver } from "@hookform/resolvers/zod"; // zodResolver digunakan untuk menghubungkan zod dengan react hook form, sehingga kita bisa menggunakan validasi yang sudah kita buat di zod untuk form yang kita buat dengan react hook form
+import { useState } from "react";
 
 // type registerFormSchema ={
 //   username: string;
@@ -17,11 +18,16 @@ const registerFormSchema = z.object({
     .string()
     .min(8, { message: "Password harus lebih dari 8 karakter" }), // disini kita kasi bentuk validasi atau syarat untuk input password, misalnya harus string, minimal 8 karakter, dll
   age: z.coerce.number().min(18, { message: "Umur harus lebih dari 18 tahun" }), //.coerce digunakan untuk mengubah tipe data yang diinputkan menjadi number, karena inputan dari form selalu string, jadi kita perlu mengubahnya menjadi number agar bisa di validasi dengan min(18)
+  dob: z.coerce.date({
+    message: "Tanggal lahir harus berupa tanggal yang valid",
+  }), // disini kita kasi bentuk validasi atau syarat untuk input date of birth, misalnya harus berupa tanggal yang valid, dll
 });
 
 type RegisterFormSchema = z.infer<typeof registerFormSchema>; // untuk mengambil tipe data dari zod yang sudah kita buat, jadi kita tidak perlu menulis ulang tipe data yang sama dengan yang ada di zod, cukup menggunakan z.infer untuk mengambil tipe data dari zod yang sudah kita buat
 
 const RHFPage = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const form = useForm<RegisterFormSchema>({
     resolver: zodResolver(registerFormSchema), // untuk menghubungkan zod dengan react hook form, sehingga kita bisa menggunakan validasi yang sudah kita buat di zod untuk form yang kita buat dengan react hook form
   });
@@ -51,17 +57,36 @@ const RHFPage = () => {
         </span>
         <label>
           Password:
-          <input type="password" {...form.register("password")} />
+          <input
+            type={showPassword ? "text" : "password"}
+            {...form.register("password")}
+          />
         </label>
         <span style={{ color: "red" }}>
           {form.formState.errors.password?.message}
         </span>
+
+        <label>
+          <input
+            type="checkbox"
+            onChange={(event) => setShowPassword(event.target.checked)}
+          />
+          Show Password
+        </label>
+
         <label>
           Age:
           <input type="number" {...form.register("age")} />
         </label>
         <span style={{ color: "red" }}>
           {form.formState.errors.age?.message}
+        </span>
+        <label>
+          Date of Birth:
+          <input type="date" {...form.register("dob")} />
+        </label>
+        <span style={{ color: "red" }}>
+          {form.formState.errors.dob?.message}
         </span>
         {/* button mentrigger karena berada di dalam tag form yang ada onSubmit */}
         <button>Register User</button>
