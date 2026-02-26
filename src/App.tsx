@@ -18,6 +18,7 @@ import ProductsPage from "./pages/ProductsPage";
 import FormPage from "./pages/FormPage";
 import RHFPage from "./pages/RHFPage";
 import HomeWworkRHF from "./pages/HomeWorkRHF";
+import EmployesPage from "./pages/EmployeesPage";
 
 // komponen
 // function App() {
@@ -194,6 +195,7 @@ function App() {
         <Route path="/form" element={<FormPage />} />
         <Route path="/rhf" element={<RHFPage />} />
         <Route path="/homework" element={<HomeWworkRHF/>} />
+        <Route path="/employees" element={<EmployesPage/>} />
 
 
         {/* path bintang * sama seperti else. jika path homepage dan terms tidak ke hit, makan akan masuk ke notfound page */}
