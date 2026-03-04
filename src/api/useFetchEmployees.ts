@@ -2,7 +2,7 @@ import { useState } from "react";
 import { axiosInstance } from "../lib/axios";
 
 type EmployeeResponse = {
-  id: number;
+  id: string;
   name: string;
 };
 export const useFetchEmployees = () => {
