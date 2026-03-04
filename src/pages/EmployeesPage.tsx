@@ -1,28 +1,10 @@
-import { useState } from "react";
-
-type Employee = {
-  id: number;
-  name: string;
-};
+// import { useState } from "react";
+// import { set } from "zod/v4";
+import { useFetchEmployees } from "../api/useFetchEmployees";
 
 const EmployeesPage = () => {
-  const [employees, setEmployees] = useState<Employee[]>([]);
-  const[employeeIsLoading, setEmployeeIsLoading] = useState(false);
-  const fetchEmployees = async () => {
-    try {
-      setEmployeeIsLoading(true); //toggle loading on
-      const response = await fetch("http://localhost:2000/employees", {
-        method: "GET",
-      });
-      const responeJson = (await response.json()) as Employee[];
-      setEmployees(responeJson);
-        
-    } catch (error) {
-      alert("error fetching employees");
-    } finally {
-      setEmployeeIsLoading(false); //toggle loading off
-    }
-  };
+  const { employees, employeeIsLoading, employeesError, fetchEmployees } =
+    useFetchEmployees();
   return (
     <div>
       <h1>Employees Page</h1>
@@ -37,7 +19,7 @@ const EmployeesPage = () => {
         <tbody>
           {employees.map((employee) => {
             return (
-              <tr>
+              <tr key={employee.id}>
                 <td>{employee.id}</td>
                 <td>{employee.name}</td>
               </tr>
@@ -45,10 +27,12 @@ const EmployeesPage = () => {
           })}
         </tbody>
       </table>
-      <button disabled={employeeIsLoading} onClick={fetchEmployees}>Refresh Employees</button>
+      <button disabled={employeeIsLoading} onClick={fetchEmployees}>
+        Refresh Employees
+      </button>
       {employeeIsLoading && <p>Loading...</p>}
+      {employeesError && <p style={{ color: "red" }}>{employeesError}</p>}
       {/* {employeeIsLoading ? <p>Loading...</p> : null} */}
-
     </div>
   );
 };
